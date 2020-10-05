@@ -14,8 +14,12 @@ namespace ABB
 		public ArbolBinarioBusqueda(IComparable dato){
 			this.dato = dato;
 		}
-		
-		
+
+		public ArbolBinarioBusqueda()
+		{
+			
+		}
+
 		public IComparable getDatoRaiz(){
 			return this.dato;
 		}
@@ -47,6 +51,30 @@ namespace ABB
 
 		//Metodo agregar
 		public void agregar(IComparable elem) {
+            if (this.dato == null)
+            {
+				this.dato = elem;
+				return; 
+            }
+            else
+			{ 
+				if (int.Parse(elem.ToString()) > int.Parse(this.dato.ToString()))
+				{
+                    if (this.getHijoDerecho()==null)
+                    {
+						this.agregarHijoDerecho(new ArbolBinarioBusqueda(null));
+                    }
+					this.getHijoDerecho().agregar(elem);
+				}
+				else
+				{
+					if (this.getHijoIzquierdo() == null)
+					{
+						this.agregarHijoIzquierdo(new ArbolBinarioBusqueda(null));
+					}
+					this.getHijoIzquierdo().agregar(elem);
+				}
+			}
 		}
 		
 		//Metodo incluye. Es el mismo que el de arbol binario.
