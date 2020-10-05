@@ -31,7 +31,7 @@ namespace ABB
 			Console.WriteLine();
 
 			//Compruebo el funcionamiento de incluye().
-			int dato = 0;
+			int dato = 6;
 			Console.WriteLine("El dato {0} esta en el ab? {1}", dato, arbolBinarioBusqueda.incluye(dato));
 
 

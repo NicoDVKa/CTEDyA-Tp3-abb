@@ -76,34 +76,41 @@ namespace ABB
 				}
 			}
 		}
-		
-		//Metodo incluye. Es el mismo que el de arbol binario.
-		public bool incluye(IComparable elemento) {
-			bool verificar = true;
 
-			if (this.getDatoRaiz().ToString()==elemento.ToString())
+		//Mejora al metodo incluye. Propio de un arbol binario de busqueda.
+		public bool incluye(IComparable elemento)
+        {
+			bool verificar = false; 
+
+			if (this.dato == null)
 			{
-				return true;
+				return false;
 			}
-
-			if (this.getHijoIzquierdo() != null)
+			else
 			{
-				if (verificar == this.getHijoIzquierdo().incluye(elemento))
+				if (int.Parse(elemento.ToString()) == int.Parse(this.dato.ToString()))
 				{
-					return verificar;
+					return true;
+				}
+				else
+				{
+                    if (int.Parse(elemento.ToString()) > int.Parse(this.dato.ToString()))
+                    {
+						if (this.getHijoDerecho() == null) return false;
+						verificar = this.getHijoDerecho().incluye(elemento);
+						
+                    }
+					else
+                    {
+						if(this.getHijoIzquierdo() == null) return false;
+						verificar = this.getHijoIzquierdo().incluye(elemento);
+						
+					}
 				}
 			}
 
-			if (this.getHijoDerecho() != null)
-			{
-				if (verificar == this.getHijoDerecho().incluye(elemento))
-				{
-					return verificar;
-				}
-			}
-
-			return false;
-		}
+			return verificar;
+        }
 
 		//Recorridos. son los mismos que en los Arboles Binarios
 		public void preorden() { 
